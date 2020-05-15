@@ -21,5 +21,8 @@
   "homepage": "https://github.com/ye-yu/web-piano-visualiser#readme",
   "dependencies": {
     "easymidi": "^1.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
