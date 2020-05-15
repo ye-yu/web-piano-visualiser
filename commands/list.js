@@ -1,18 +1,23 @@
 function call(args) {
   var i=0;
+  
   if (args[0] === 'input' || args[0] === undefined) {
-    console.log('Input devices:');
+    console.info('Input devices:');
     require('../index').getEM().getInputs().forEach(inp => {
-      console.log(`  [${i++}] ${inp}`);
+      console.info(`  [${i++}] ${inp}`);
     });
-  } else if (args[0] === 'output') {
-    console.log('Output devices:');
-    require('../index').getEM().getOutputs().forEach(inp => {
-      console.log(`  [${i++}] ${inp}`);
-    });
-  } else {
-    console.log(`Invalid args: ${args.join(' ')}`);
+    return;
   }
+
+  if (args[0] === 'output') {
+    console.info('Output devices:');
+    require('../index').getEM().getOutputs().forEach(inp => {
+      console.info(`  [${i++}] ${inp}`);
+    });
+    return;
+  }
+
+  console.error(`Invalid args: ${args.join(' ')}`);
 }
 
 function help() {
