@@ -1,0 +1,25 @@
+{
+  "name": "web-piano-visualiser",
+  "version": "0.0.1",
+  "description": "to visualise piano midi input on web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ye-yu/web-piano-visualiser.git"
+  },
+  "keywords": [
+    "piano"
+  ],
+  "author": "ye-yu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ye-yu/web-piano-visualiser/issues"
+  },
+  "homepage": "https://github.com/ye-yu/web-piano-visualiser#readme",
+  "dependencies": {
+    "easymidi": "^1.1.2"
+  }
+}
