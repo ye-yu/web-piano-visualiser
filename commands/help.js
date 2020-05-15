@@ -3,7 +3,8 @@ function call(args) {
     console.log('List of commands');
   } else {
     try {
-      require(`./${args[0]}`).help(args.slice(1));
+      let help = require(`./${args[0]}`).help(args.slice(1));
+      console.info(help);
     } catch(err) {
       console.error('No help message available.');
     }
