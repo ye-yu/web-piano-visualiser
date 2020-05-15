@@ -20,4 +20,22 @@ stdin.addListener('data', function(d) {
   require('./parse').parse(d);
 });
 
+function getEM() {
+  return EM;
+}
+
+function getGlobVar(key, def = undefined) {
+  return GLOBAL_VAR[key] || def;
+}
+
+function setGlobVar(key, value) {
+  GLOBAL_VAR[key] = value;
+}
+
 init();
+
+module.exports = {
+  getEM: getEM,
+  getGlobVar: getGlobVar,
+  setGlobVar: setGlobVar
+};
