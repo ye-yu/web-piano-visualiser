@@ -1,12 +1,12 @@
-"use strict";
+'use strict';
 
 const EM = require('easymidi');
 const GLOBAL_VAR = {
-  "use": undefined
+  use: undefined
 }
 function init() {
   if (EM.getInputs().length < 1) {
-    console.log("No inputs available.");
+    console.log('No inputs available.');
     return;
   }
   GLOBAL_VAR.use = new EM.Input(EM.getInputs()[0]);
@@ -15,9 +15,9 @@ function init() {
 
 let stdin = process.openStdin();
 
-stdin.addListener("data", function(d) {
-  d = d.toString().trim().split();
-  console.log(d);
+stdin.addListener('data', function(d) {
+  d = d.toString().trim().split(" ");
+  require('./parse').parse(d);
 });
 
 init();
