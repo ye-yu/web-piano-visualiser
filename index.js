@@ -1,9 +1,7 @@
 'use strict';
 
 const EM = require('easymidi');
-const GLOBAL_VAR = {
-  use: undefined
-}
+const GLOBAL_VAR = {};
 function init() {
   if (EM.getInputs().length < 1) {
     console.log('No inputs available.');
