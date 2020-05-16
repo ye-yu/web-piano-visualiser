@@ -14,6 +14,7 @@ function disconnectInput() {
   }
 
   INP.close();
+  require('../index').setGlobVar('inputConnected', false);
   console.info(CHALK.green('INFO:'), 'Input device is succesfully disconnected.');
 }
 
@@ -23,6 +24,9 @@ function disconnectOutput() {
     console.error(CHALK.red('ERROR:'), 'Output device is not available.');
     return;
   }
+
+  OUT.close();
+  require('../index').setGlobVar('outputConnected', false);
   console.info(CHALK.green('INFO:'), 'Output device is succesfully disconnected.');
 }
 

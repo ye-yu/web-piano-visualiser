@@ -27,6 +27,7 @@ function call(args) {
     }
   });
 
+  require('../index').setGlobVar('inputConnected', true);
   console.info(CHALK.green('INFO:'), 'IO device is succesfully connected.');
 }
 
