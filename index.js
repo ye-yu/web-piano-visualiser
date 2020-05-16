@@ -13,13 +13,6 @@ function init() {
   console.log(`Initialisation: Using ${EM.getInputs()[0]} as default midi input.`);
 }
 
-let stdin = process.openStdin();
-
-stdin.addListener('data', function(d) {
-  d = d.toString().trim().split(" ");
-  require('./parse').parse(d);
-});
-
 function getEM() {
   return EM;
 }
@@ -31,6 +24,14 @@ function getGlobVar(key, def = undefined) {
 function setGlobVar(key, value) {
   GLOBAL_VAR[key] = value;
 }
+
+let stdin = process.openStdin();
+
+stdin.addListener('data', function(d) {
+  d = d.toString().trim().split(" ");
+  require('./parse').parse(d);
+});
+
 
 init();
 
