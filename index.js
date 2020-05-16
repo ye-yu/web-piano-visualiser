@@ -29,6 +29,7 @@ init();
 
 if (process.argv[2] == 'websocket') {
   console.info('Running websocket');
+  require('./websockets/index');
 } else {
   let stdin = process.openStdin();
 
