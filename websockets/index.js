@@ -20,7 +20,7 @@ WSS_INSTANCE.on('request', function(request) {
     console.log((new Date()) + ' Connection accepted from ' + request.origin);
     connection.on('message', function(message) {
         if (message.type === 'utf8') {
-            console.log('Received Message: ' + message.utf8Data);
+          require('./parse').parse(message.utf8Data.split(' '), connection);
         }
     });
     connection.on('close', function(reasonCode, description) {
