@@ -1,3 +1,4 @@
+const CHALK = require('chalk');
 const EM = require('../index').getEM();
 const DESC = 'To set program input and output device';
 
@@ -10,7 +11,7 @@ function call(args) {
     setOutputDev(args[1], args[2]);
     return;
   }
-  console.error('Set input or output device.');
+  console.error(CHALK.red('ERROR:'), 'Set input or output device.');
 }
 
 function setInputDev(option, value) {
@@ -29,13 +30,13 @@ function setInputDev(option, value) {
     input = new EM.Input(value);
     try {
       require('../index').setGlobVar('input', new EM.Input(value));
-      console.info(`Successfully set input device to ${value}.`);
+      console.info(CHALK.green('INFO:'), `Successfully set input device to ${value}.`);
     } catch (err) {
-      console.error(err);
+      console.error(CHALK.red('ERROR:'), err);
     }
     return;
   }
-  console.error('Set index from list or name of device.');
+  console.error(CHALK.red('ERROR:'), 'Set index from list or name of device.');
 }
 
 function setOutputDev(option, value) {
@@ -51,10 +52,10 @@ function setOutputDev(option, value) {
   }
   if (option == 'name') {
     require('../index').setGlobVar('output', new EM.Output(value));
-    console.info(`Successfully set output device to ${value}.`);
+    console.info(CHALK.green('INFO:'), `Successfully set output device to ${value}.`);
     return;
   }
-  console.error('Set index from list or name of device.');
+  console.error(CHALK.red('ERROR:'), 'Set index from list or name of device.');
 }
 
 function help(args) {

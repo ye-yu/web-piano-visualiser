@@ -1,12 +1,13 @@
+const CHALK = require('chalk');
 const DESC = "To connect to IO devices";
 
 function call(args) {
   const OUT = require('../index').getGlobVar('output');
   if (!OUT) {
-    console.error('Output device is not available.');
+    console.error(CHALK.red('ERROR:'), 'Output device is not available.');
     return;
   }
-  console.info('Output is not implemented yet.');
+  console.info(CHALK.green('INFO:'),'Output is not implemented yet.');
 }
 
 function playNote(note, duration) {

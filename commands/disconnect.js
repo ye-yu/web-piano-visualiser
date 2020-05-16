@@ -1,3 +1,4 @@
+const CHALK = require('chalk');
 const DESC = "To connect to IO devices";
 
 function call(args) {
@@ -8,21 +9,21 @@ function call(args) {
 function disconnectInput() {
   const INP = require('../index').getGlobVar('input');
   if (!INP) {
-    console.error('Input device is not available.');
+    console.error(CHALK.red('ERROR:'), 'Input device is not available.');
     return;
   }
 
   INP.close();
-  console.info('Input device is succesfully disconnected.');
+  console.info(CHALK.green('INFO:'), 'Input device is succesfully disconnected.');
 }
 
 function disconnectOutput() {
   const OUT = require('../index').getGlobVar('output');
   if (!OUT) {
-    console.error('Output device is not available.');
+    console.error(CHALK.red('ERROR:'), 'Output device is not available.');
     return;
   }
-  console.info('Output device is succesfully disconnected.');
+  console.info(CHALK.green('INFO:'), 'Output device is succesfully disconnected.');
 }
 
 function help(args) {
