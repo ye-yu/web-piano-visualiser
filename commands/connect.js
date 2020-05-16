@@ -8,17 +8,41 @@ function call(args) {
   }
 
   INP.on('noteon', params => {
-    console.log(params);
+    if (params.velocity == 0) {
+      noteOff(params.note);
+      return;
+    }
+
+    noteOn(params.note, params.velocity);
   });
 
   INP.on('noteoff', params => {
-    console.log(params);
+    noteOff(params.note);
   });
 
   INP.on('cc', params => {
-    console.log(params);
+    if (params.controller == 64) {
+      sustain(params.value > 50);
+    }
   });
 }
+
+function noteOn(note, velocity) {
+  console.info(`Pressing key ${note} with velocity ${velocity}`);
+}
+
+function noteOff(note) {
+  console.info(`Released key ${note}`);
+}
+
+function sustain(isOn) {
+  if (isOn) {
+    console.info('Sustain pedal is on.');
+    return;
+  }
+  console.info('Sustain pedal is off.');
+}
+
 
 function help(args) {
   return `Usage: exit [exit code]
