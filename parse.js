@@ -3,7 +3,8 @@ function parse(args) {
     const stdout = {
       info: console.info,
       error: console.error,
-      log: console.log
+      log: console.log,
+      json: j => console.log(j)
     }
     require(`./commands/${args[0]}`).call(args.slice(1), stdout);
   } catch (err) {
