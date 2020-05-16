@@ -21,7 +21,8 @@
   "homepage": "https://github.com/ye-yu/web-piano-visualiser#readme",
   "dependencies": {
     "chalk": "^4.0.0",
-    "easymidi": "^1.1.2"
+    "easymidi": "^1.1.2",
+    "websocket": "^1.0.31"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
