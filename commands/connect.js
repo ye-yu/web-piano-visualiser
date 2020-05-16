@@ -22,7 +22,7 @@ function call(args, stdout) {
   });
 
   INP.on('cc', params => {
-    if (params.controller == 64) {
+    if (params.controller == 64 && params.channel == 0) {
       sustain(params.value > 50, stdout);
     }
   });
@@ -32,19 +32,30 @@ function call(args, stdout) {
 }
 
 function noteOn(note, velocity, stdout) {
-  stdout.info(CHALK.green('INFO:'), `Pressing key ${note} with velocity ${velocity}`);
+  stdout.json({
+    note: note,
+    velocity: velocity
+  });
 }
 
 function noteOff(note, stdout) {
-  stdout.info(CHALK.green('INFO:'), `Released key ${note}`);
+  stdout.json({
+    note: note
+  });
 }
 
 function sustain(isOn, stdout) {
   if (isOn) {
-    stdout.info(CHALK.green('INFO:'), 'Sustain pedal is on.');
+    stdout.json({
+      event: "sustain",
+      state: true
+    });
     return;
   }
-  stdout.info(CHALK.green('INFO:'), 'Sustain pedal is off.');
+  stdout.json({
+    event: "sustain",
+    state: false
+  });
 }
 
 
