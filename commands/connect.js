@@ -1,50 +1,50 @@
 const CHALK = require('chalk');
 const DESC = "To connect to IO devices";
 
-function call(args) {
+function call(args, stdout) {
   const INP = require('../index').getGlobVar('input');
   if (!INP) {
-    console.error(CHALK.red('ERROR:'), 'Input device is not available.');
+    stdout.error(CHALK.red('ERROR:'), 'Input device is not available.');
     return;
   }
 
   INP.on('noteon', params => {
     if (params.velocity == 0) {
-      noteOff(params.note);
+      noteOff(params.note, stdout);
       return;
     }
 
-    noteOn(params.note, params.velocity);
+    noteOn(params.note, params.velocity, stdout);
   });
 
   INP.on('noteoff', params => {
-    noteOff(params.note);
+    noteOff(params.note, stdout);
   });
 
   INP.on('cc', params => {
     if (params.controller == 64) {
-      sustain(params.value > 50);
+      sustain(params.value > 50, stdout);
     }
   });
 
   require('../index').setGlobVar('inputConnected', true);
-  console.info(CHALK.green('INFO:'), 'IO device is succesfully connected.');
+  stdout.info(CHALK.green('INFO:'), 'IO device is succesfully connected.');
 }
 
-function noteOn(note, velocity) {
-  console.info(CHALK.green('INFO:'), `Pressing key ${note} with velocity ${velocity}`);
+function noteOn(note, velocity, stdout) {
+  stdout.info(CHALK.green('INFO:'), `Pressing key ${note} with velocity ${velocity}`);
 }
 
-function noteOff(note) {
-  console.info(CHALK.green('INFO:'), `Released key ${note}`);
+function noteOff(note, stdout) {
+  stdout.info(CHALK.green('INFO:'), `Released key ${note}`);
 }
 
-function sustain(isOn) {
+function sustain(isOn, stdout) {
   if (isOn) {
-    console.info(CHALK.green('INFO:'), 'Sustain pedal is on.');
+    stdout.info(CHALK.green('INFO:'), 'Sustain pedal is on.');
     return;
   }
-  console.info(CHALK.green('INFO:'), 'Sustain pedal is off.');
+  stdout.info(CHALK.green('INFO:'), 'Sustain pedal is off.');
 }
 
 

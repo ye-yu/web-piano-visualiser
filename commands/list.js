@@ -1,26 +1,26 @@
 const CHALK = require('chalk');
 const DESC = 'To list down IO devices.';
 
-function call(args) {
+function call(args, stdout) {
   var i=0;
 
   if (args[0] === 'input' || args[0] === undefined) {
-    console.info(CHALK.green('Input devices:'));
+    stdout.info(CHALK.green('Input devices:'));
     require('../index').getEM().getInputs().forEach(inp => {
-      console.info(CHALK.yellow(`  [${i++}]`), ` ${inp}`);
+      stdout.info(CHALK.yellow(`  [${i++}]`), ` ${inp}`);
     });
     return;
   }
 
   if (args[0] === 'output') {
-    console.info(CHALK.green('Output devices:'));
+    stdout.info(CHALK.green('Output devices:'));
     require('../index').getEM().getOutputs().forEach(out => {
-      console.info(CHALK.yellow(`  [${i++}]`), ` ${out}`);
+      stdout.info(CHALK.yellow(`  [${i++}]`), ` ${out}`);
     });
     return;
   }
 
-  console.error(CHALK.red('ERROR:'), `Invalid args: ${args.join(' ')}`);
+  stdout.error(CHALK.red('ERROR:'), `Invalid args: ${args.join(' ')}`);
 }
 
 function help() {

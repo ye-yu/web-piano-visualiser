@@ -21,7 +21,6 @@ WSS_INSTANCE.on('request', function(request) {
     connection.on('message', function(message) {
         if (message.type === 'utf8') {
             console.log('Received Message: ' + message.utf8Data);
-            connection.sendUTF('Received Message: ' + message.utf8Data);
         }
     });
     connection.on('close', function(reasonCode, description) {

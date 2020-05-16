@@ -2,19 +2,19 @@ const CHALK = require('chalk');
 const EM = require('../index').getEM();
 const DESC = 'To set program input and output device';
 
-function call(args) {
+function call(args, stdout) {
   if (args[0] == 'input') {
-    setInputDev(args[1], args[2]);
+    setInputDev(args[1], args[2], stdout);
     return;
   }
   if (args[0] == 'output') {
-    setOutputDev(args[1], args[2]);
+    setOutputDev(args[1], args[2], stdout);
     return;
   }
-  console.error(CHALK.red('ERROR:'), 'Set input or output device.');
+  stdout.error(CHALK.red('ERROR:'), 'Set input or output device.');
 }
 
-function setInputDev(option, value) {
+function setInputDev(option, value, stdout) {
   const PREV_INP = require('../index').getGlobVar('input');
   if (PREV_INP) {
     PREV_INP.close();
@@ -31,16 +31,16 @@ function setInputDev(option, value) {
     try {
       require('../index').setGlobVar('input', new EM.Input(value));
       require('../index').setGlobVar('inputName', value);
-      console.info(CHALK.green('INFO:'), `Successfully set input device to ${value}.`);
+      stdout.info(CHALK.green('INFO:'), `Successfully set input device to ${value}.`);
     } catch (err) {
-      console.error(CHALK.red('ERROR:'), err);
+      stdout.error(CHALK.red('ERROR:'), err);
     }
     return;
   }
-  console.error(CHALK.red('ERROR:'), 'Set index from list or name of device.');
+  stdout.error(CHALK.red('ERROR:'), 'Set index from list or name of device.');
 }
 
-function setOutputDev(option, value) {
+function setOutputDev(option, value, stdout) {
   const PREV_OUT = require('../index').getGlobVar('output');
   if (PREV_OUT) {
     PREV_OUT.close();
@@ -54,10 +54,10 @@ function setOutputDev(option, value) {
   if (option == 'name') {
     require('../index').setGlobVar('output', new EM.Output(value));
     require('../index').setGlobVar('outputName', value);
-    console.info(CHALK.green('INFO:'), `Successfully set output device to ${value}.`);
+    stdout.info(CHALK.green('INFO:'), `Successfully set output device to ${value}.`);
     return;
   }
-  console.error(CHALK.red('ERROR:'), 'Set index from list or name of device.');
+  stdout.error(CHALK.red('ERROR:'), 'Set index from list or name of device.');
 }
 
 function help(args) {
