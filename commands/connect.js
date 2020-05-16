@@ -25,6 +25,8 @@ function call(args) {
       sustain(params.value > 50);
     }
   });
+
+  console.info('IO device is succesfully connected.');
 }
 
 function noteOn(note, velocity) {
@@ -45,7 +47,7 @@ function sustain(isOn) {
 
 
 function help(args) {
-  return `Usage: exit [exit code]
+  return `Usage: connect
 
 Establish connection to input and output devices. This
 is to enable input and output reading.`;
