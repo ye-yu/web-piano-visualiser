@@ -7,7 +7,7 @@ function init() {
     console.log('No inputs available.');
     return;
   }
-  GLOBAL_VAR.use = new EM.Input(EM.getInputs()[0]);
+  GLOBAL_VAR.input = new EM.Input(EM.getInputs()[0]);
   console.log(`Initialisation: Using ${EM.getInputs()[0]} as default midi input.`);
 }
 
