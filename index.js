@@ -25,15 +25,20 @@ function setGlobVar(key, value) {
   GLOBAL_VAR[key] = value;
 }
 
-let stdin = process.openStdin();
-
-stdin.addListener('data', function(d) {
-  d = d.toString().trim().split(" ");
-  require('./parse').parse(d);
-});
-
-
 init();
+
+if (process.argv[2] == 'websocket') {
+  console.info('Running websocket');
+} else {
+  let stdin = process.openStdin();
+
+  stdin.addListener('data', function(d) {
+    d = d.toString().trim().split(" ");
+    require('./parse').parse(d);
+  });
+
+  console.log('Listening to STDIN...');
+}
 
 module.exports = {
   getEM: getEM,
