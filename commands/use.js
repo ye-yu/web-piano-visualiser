@@ -1,4 +1,5 @@
 const EM = require('../index').getEM();
+const DESC = 'To set program input and output device';
 
 function call(args) {
   if (args[0] == 'input') {
@@ -34,7 +35,7 @@ function setInputDev(option, value) {
     }
     return;
   }
-  console.erroro('Set index from list or name of device.');
+  console.error('Set index from list or name of device.');
 }
 
 function setOutputDev(option, value) {
@@ -66,5 +67,6 @@ Set program input and output device`;
 
 module.exports = {
   call: call,
-  help: help
+  help: help,
+  desc: DESC
 };

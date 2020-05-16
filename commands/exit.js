@@ -1,3 +1,5 @@
+const DESC = "To exit program with exit code";
+
 function call(args) {
   process.exit(args[0]);
 }
@@ -5,10 +7,11 @@ function call(args) {
 function help(args) {
   return `Usage: exit [exit code]
 
-Exits program with exit code. Default code is 0.`;
+Exit program with exit code. Default code is 0.`;
 }
 
 module.exports = {
   call: call,
-  help: help
+  help: help,
+  desc: DESC
 };

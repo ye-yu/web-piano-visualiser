@@ -1,6 +1,8 @@
+const DESC = 'To list down IO devices.';
+
 function call(args) {
   var i=0;
-  
+
   if (args[0] === 'input' || args[0] === undefined) {
     console.info('Input devices:');
     require('../index').getEM().getInputs().forEach(inp => {
@@ -31,5 +33,6 @@ by default if there are no args provided.`;
 
 module.exports = {
   call: call,
-  help: help
+  help: help,
+  desc: DESC
 };
