@@ -30,6 +30,7 @@ function setInputDev(option, value) {
     input = new EM.Input(value);
     try {
       require('../index').setGlobVar('input', new EM.Input(value));
+      require('../index').setGlobVar('inputName', value);
       console.info(CHALK.green('INFO:'), `Successfully set input device to ${value}.`);
     } catch (err) {
       console.error(CHALK.red('ERROR:'), err);
@@ -52,6 +53,7 @@ function setOutputDev(option, value) {
   }
   if (option == 'name') {
     require('../index').setGlobVar('output', new EM.Output(value));
+    require('../index').setGlobVar('outputName', value);
     console.info(CHALK.green('INFO:'), `Successfully set output device to ${value}.`);
     return;
   }
