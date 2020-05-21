@@ -52,6 +52,7 @@ function startStreamInput() {
     return;
   }
 
+  $("#input-dev-list").attr("disabled", true);
   ws.send('connect');
 }
 
@@ -72,4 +73,6 @@ function displayInputList(inputs) {
   $("#input-dev-list").children().remove();
   inputs.forEach(name => $("#input-dev-list").append(makeOption(i++, name)));
   setInputDev(0);
+
+  $("#input-dev-list").attr("disabled", false);
 }
