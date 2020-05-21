@@ -1,6 +1,6 @@
 function renderWebSocketConnection() {
   connectWebSocket();
-  setTimeout(getInputList, 2000);
+  setTimeout(getInputList, 1000);
 }
 
-setTimeout(renderWebSocketConnection, 2000);
+setTimeout(renderWebSocketConnection, 1000);

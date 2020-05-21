@@ -8,6 +8,8 @@ function connectWebSocket() {
   ws = new WebSocket('ws://localhost:38888', 'wamp');
   ws.onmessage = parseMessage;
   ws.onclose = (d) => console.log('Server has closed the connection.', d);
+
+  $("#status-container").remove();
   return true;
 }
 
