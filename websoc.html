@@ -15,12 +15,15 @@
 
     <div class="form-group d-flex justify-content-center" id="input-dev-container">
       <select class="form-control mx-1" style="width:200px" id="input-dev-list">
-        <option value="item-1">Input 1</option>
+        <option value="item-1" onclick="setInputDev(0)">Input 1</option>
       </select>
-      <button class="mx-1" type="button" name="button">Use</button>
+      <button class="mx-1" type="button" name="button" id="start-streaming-button">
+        Start Streaming Input
+      </button>
     </div>
   </div>
 </body>
-<script src="static/js/websoc.js" charset="utf-8"></script>
 <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
+<script src="static/js/websoc.js" charset="utf-8"></script>
+<script src="static/js/display.js" charset="utf-8"></script>
