@@ -66,5 +66,8 @@ function stopStreamInput() {
 function displayInputList(inputs) {
   var i=0;
   console.log(`There are ${inputs.length} inputs:`);
-  inputs.forEach(e => console.log(`  [${i++}] ${e}`));
+  makeOption = (index, name) => `<option onclick="setInputDev(${index})">${name}</option>`;
+  $("#input-dev-list").children().remove();
+  inputs.forEach(name => $("#input-dev-list").append(makeOption(i++, name)));
+  setInputDev(0);
 }
