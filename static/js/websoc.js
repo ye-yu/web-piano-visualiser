@@ -1,4 +1,5 @@
 let ws;
+let connected = false;
 
 function connectWebSocket() {
   if (ws && ws.readyState < 2) {
@@ -49,20 +50,25 @@ function setInputDev(index) {
 function startStreamInput() {
   if (!ws || ws.readyState > 1) {
     console.error('Error! Connection has not been established.');
-    return;
+    return false;
   }
 
   $("#input-dev-list").attr("disabled", true);
+  $("#streaming-button").text("Stop Streaming Input");
   ws.send('connect');
+  return true;
 }
 
 function stopStreamInput() {
   if (!ws || ws.readyState > 1) {
     console.error('Error! Connection has not been established.');
-    return;
+    return false;
   }
 
+  $("#input-dev-list").attr("disabled", false);
+  $("#streaming-button").text("Start Streaming Input");
   ws.send('disconnect');
+  return true;
 }
 
 /* web DOM rendering funtions */
@@ -75,4 +81,13 @@ function displayInputList(inputs) {
   setInputDev(0);
 
   $("#input-dev-list").attr("disabled", false);
+}
+
+function streamButton() {
+  if (!connected) {
+    if (!startStreamInput()) return;
+  } else {
+    if (!stopStreamInput()) return;
+  }
+  connected = !connected;
 }
